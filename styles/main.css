@@ -125,11 +125,11 @@ input[type=text]{
     border-color: var(--main-color);
 }
 
-button, .search input[type=submit]{
+.boto, .search input[type=submit]{
     cursor: pointer;
 }
 
-button{
+.boto{
     border-radius: 4px;
     background-color: var(--viewrecipe-bg-color);
     border-color: var(--viewrecipe-fg-color);
@@ -138,7 +138,7 @@ button{
     color: var(--viewrecipe-fg-color);
     font-size: 1.5rem;
 }
-button:hover{
+.boto:hover{
     background-color: var(--viewrecipe-fg-color);
     color: var(--viewrecipe-bg-color);
 }
@@ -554,12 +554,10 @@ header .menu{
     display:inline;
     font-weight: 600;
 }
-header nav li{
-
-}
 
 @media not screen, (max-width: 768px){
     .inner-page .search-area .found {
+        /* https://developer.mozilla.org/en-US/docs/Web/CSS/grid-column */
         grid-column: 1/ span 2;
     }
     .inner-page .search-area .filter{
