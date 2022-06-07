@@ -1,0 +1,802 @@
+/*
+      Marc Delgado (marcdelgado@gmail.com)
+      UOC - "HTML i CSS" - PAC-3  05/2022
+ */
+
+/* ========================================================================= */
+/* PARAMETERS */
+/* ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap');
+
+:root{
+    font-size: 12px;
+
+    /* Colors utilitzats en la confecció del lloc */
+    --text-and-dark-bg: #2A2A2A;
+    --text-over-dark-bg: #FFFFFF;
+    --article-bg: #FFFFFF;
+    --main-color: #79BAAB;
+    --light-main-color: #C5E1DB;
+    --emphasis-color: #DC4A23;
+    --light-emphasis-color: #EB9781;
+    --body-bg-color: #FFF7E8;
+
+    /* ASPECTES DELS ENLLAÇOS */
+    /* Menú de navegació principal */
+    --nav-link-color: #2A2A2A;
+    --nav-link-decoration: none;
+    --nav-hoverlink-color: #79BAAB;
+    --nav-activelink-color: #2A2A2A;
+    /* Peu de pàgina */
+    --footer-link-color: #FFFFFF;
+    --footer-link-decoration: none;
+    --footer-hoverlink-color: #79BAAB;
+    --footer-social-hoverlink-opacity: 0.7;
+    /* Enllaços paginació */
+    --pag-link-color: #79BAAB;
+    --pag-link-decoration: none;
+    --pag-hoverlink-color: #C5E1DB;
+    /* Enllaços “shop our recomendations” i botó subscripció a la newsletter */
+    --shopour-link-color: #DC4A23;
+    --shopour-link-decoration: none;
+    --shopour-hoverlink-color: #EB9781;
+    /* Enllaç “view recipe” a Home */
+    --viewrecipe-fg-color: #79BAAB;
+    --viewrecipe-bg-color: white;
+    --viewrecipe-hover-fg-color: white;
+    --viewrecipe-hover-bg-color: #79BAAB;
+    /* Títols de receptes i productes */
+    --headlink-color: #2A2A2A;
+    --headlink-hover-color: #79BAAB;
+    /* Montserrat: Regular 400, Bold 600, Black 90 */
+    --main-font-family: 'Montserrat', sans-serif;
+}
+
+
+
+/*
+https://www.w3schools.com/howto/howto_css_responsive_text.asp
+http://www.javascriptkit.com/dhtmltutors/cssmediaqueries2.shtml#:~:text=Most%20mobile%20phones%20have%20a,a%20640%20x%20960%20resolution.
+https://developer.mozilla.org/es/docs/Web/CSS/Media_Queries/Using_media_queries
+https://www.w3schools.com/css/css_align.asp
+https://codepen.io/_martinCx/pen/LEoEJB
+https://stackoverflow.com/questions/17054158/css-100-height-with-header-and-footer
+
+ */
+
+/* ========================================================================= */
+/* HTML, BODY, container... */
+/* ========================================================================= */
+html, body{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
+
+body{
+    font-family: var(--main-font-family);
+    background-color: var(--body-bg-color);
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6, p, nav, ul, li{
+    margin: 0;
+    color: var(--text-and-dark-bg);
+}
+
+.container, .inner-page{
+    width: 1110px;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+main a, footer a{
+    text-decoration: none;
+}
+
+a:visited{
+    color: inherit;
+}
+
+input[type=text]{
+    padding: 13px 16px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border-style: solid;
+    width: 100%;
+}
+
+.search input[type=text]{
+    padding: 13px 40px;
+    background-image: url('../img/icons/search.svg');
+    background-repeat: no-repeat;
+    background-position: 10px 10px;
+    border-color: var(--main-color);
+}
+
+button, .search input[type=submit]{
+    cursor: pointer;
+}
+
+button{
+    border-radius: 4px;
+    background-color: var(--viewrecipe-bg-color);
+    border-color: var(--viewrecipe-fg-color);
+    padding: 13px 16px;
+    border-style: solid;
+    color: var(--viewrecipe-fg-color);
+    font-size: 1.5rem;
+}
+button:hover{
+    background-color: var(--viewrecipe-fg-color);
+    color: var(--viewrecipe-bg-color);
+}
+
+main{
+    flex-basis: auto;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+input::placeholder{
+    opacity: 60%;
+}
+
+/* ========================================================================= */
+/* HEADER */
+/* ========================================================================= */
+
+header{
+    background-color: var(--article-bg);
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.5);
+    z-index: 1000;
+    width: 100%;
+    position: fixed;  /*sticky em dóna problemes!! */
+}
+
+header .container{
+    display: flex;
+    align-items: center;
+}
+
+header nav ul{
+    padding: 0;
+}
+
+header nav li{
+    display:inline;
+    font-weight: 600;
+}
+
+header nav ul li a{
+    color: var(--nav-link-color);
+    text-decoration: none;
+    text-underline-offset: 2px;
+    font-weight: 600;
+}
+
+header nav ul li a:hover{
+    color: var(--nav-hoverlink-color);
+}
+
+header nav ul li a.active{
+    color: var(--text-and-dark-bg);
+    text-decoration: underline var(--text-and-dark-bg) dashed 2px;
+    font-weight: 900;
+}
+
+.container{
+    flex-direction: row;
+}
+
+.logo{
+    flex: 1;
+}
+
+.menu{
+    flex: 1;
+    text-align: right;
+}
+
+@media screen and (min-width: 769px){
+    .menu{
+        padding-right: 20px;
+    }
+
+    header nav li{
+        font-size: 1.3rem;
+        padding-left: 20px;
+    }
+
+    .logo img{
+        width: 270px;
+    }
+}
+
+@media not screen, (max-width: 768px){
+    header .container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    header nav li{
+        font-size: 1.1rem;
+        padding: 10px;
+    }
+
+    header nav{
+        margin-top: 10px;
+    }
+
+    .logo img{
+        width: 33vw;
+    }
+}
+
+/* ========================================================================= */
+/* MAIN */
+/* ========================================================================= */
+
+.index-page{
+    margin-top: 40px;
+}
+
+/* INDEX PAGE */
+/* ------------------------------------------------------------------------- */
+
+
+.index-page .impact{
+    overflow: hidden;
+    position: relative;
+}
+
+
+.index-page .impact img{
+    display: block;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+
+}
+
+.index-page .impact .background, .index-page .impact .search{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.index-page .impact .search{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+ }
+
+.index-page .impact .search h1{
+    text-align: center;
+}
+
+.index-page .impact .search form{
+    text-align: center;
+}
+
+
+
+.index-page .container img{
+    width: 100%;
+}
+
+.index-page .container{
+    display: flex;
+    flex-wrap:wrap;
+    align-content: space-between;
+}
+
+
+.index-page h2{
+    margin: 20px 0;
+    text-transform: uppercase;
+    text-align:center;
+    flex-basis: 100%;
+    /* https://mycompleteweb.net/line-on-both-sides-heading-using-css-grid/ */
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 35% 0;
+    grid-gap: 20px;
+}
+
+
+/* https://mycompleteweb.net/line-on-both-sides-heading-using-css-grid/ */
+.index-page h2:after,.index-page h2:before {
+    content: " ";
+    display: block;
+    border-bottom: 4px solid var(--text-and-dark-bg);
+}
+
+.index-page h3{
+    font-size: 1.5vw;
+}
+
+
+.index-page .shop{
+    background-image: url("../img/shop-bg.jpg");
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.index-page .shop .message{
+    background-color: var(--article-bg);
+    /* https://html-css-js.com/css/generator/box-shadow/ */
+    box-shadow: 0px 0px 6px 0px rgba(0,0,0,0.6);
+}
+
+.index-page .shop .message h2{
+    margin: 24px 20% 12px 20%;
+}
+
+.index-page .shop .message p{
+    margin: 0 10% 20px 10%;
+    text-align: center;
+    line-height: 1.5;
+    font-size: 1.4rem;
+}
+
+.index-page .shop .message p > a{
+    color: var(--shopour-link-color);
+    text-align: center;
+    display: block;
+    font-weight: 600;
+}
+
+.index-page .shop .message a:hover {
+    color: var(--shopour-hoverlink-color);
+}
+
+.index-page .pick-of-the-week{
+    margin: 20px auto;
+}
+
+.index-page .pick-of-the-week h4{
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1.2vh;
+    margin-bottom: 6px;
+}
+
+.index-page .pick-of-the-week p{
+    font-size: 1.2vh;
+    line-height: 200%;
+    margin-bottom: 24px;
+}
+
+.index-page .pick-of-the-week h5{
+    font-weight: 400;
+    font-size: 2.5vh;
+    margin-bottom: 6px;
+    font-weight: 900;
+}
+
+.index-page .container{
+    column-gap: 20px;
+}
+
+@media not screen, (max-width: 768px){
+    .index-page .impact{
+        height: 60vw;
+    }
+
+    .index-page .impact .search form{
+        width: 70vw;
+    }
+
+    .index-page article{
+        flex-basis: calc(50% - 10px);
+    }
+
+    .index-page .pick-of-the-week{
+        flex-basis: 100%;
+    }
+
+    .index-page .impact h1{
+        padding-bottom: 40px;
+        font-size: 8vw;
+    }
+
+    .index-page .shop{
+        margin-top: 50px;
+        overflow: auto;
+        padding: 40px 0 40px 0;
+    }
+
+    .index-page .shop::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    .index-page .shop .message {
+        flex-basis: 90%;
+        min-height: 280px;
+    }
+    .index-page h2{
+        font-size: 2.2rem;
+    }
+}
+
+@media screen and (min-width: 769px){
+    .index-page .impact{
+        height: 500px;
+    }
+
+    .index-page .impact .search form{
+        width: 500px;
+    }
+
+    .index-page article, .index-page .pick-of-the-week{
+        flex: 1;
+    }
+
+    .index-page .shop{
+        flex-basis: 100%;
+    }
+
+    .index-page .impact h1{
+        padding-bottom: 40px;
+        font-size: 5rem;
+    }
+    .index-page .shop{
+        margin-top: 50px;
+        height: 40vw;
+    }
+    .index-page .shop .message {
+        flex-basis: 60%;
+        min-height: 280px;
+    }
+    .index-page h2{
+        font-size: 3rem;
+    }
+}
+
+/* INNER PAGES */
+/* ------------------------------------------------------------------------- */
+.inner-page{
+    margin-top: 100px;
+}
+
+.inner-page h1{
+    text-transform: uppercase;
+
+}
+
+.inner-page h2{
+    text-transform: uppercase;
+
+}
+
+.inner-page > p{
+    font-size: 1.5rem;
+}
+
+@media not screen, (max-width: 768px) {
+    .inner-page h1{
+        font-size: 8vw;
+    }
+}
+
+@media screen and (min-width: 769px){
+    .inner-page h1{
+        font-size: 3.5rem;
+    }
+}
+
+/* RECIPES PAGE, SHOP PAGE */
+/* ------------------------------------------------------------------------- */
+
+.inner-page .search-area{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    gap: 20px;
+}
+
+.inner-page .search-area .found{
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-wrap:wrap;
+    gap: 20px;
+}
+
+.inner-page .search-area .filter{
+    grid-column: 1;
+    grid-row: 1;
+    background-color: var(--article-bg);
+}
+
+.inner-page .search-area img{
+    width: 100%;
+}
+
+.inner-page .search-area article{
+    flex-basis: calc(33.333% - 20px);
+}
+
+@media not screen, (max-width: 768px){
+    .inner-page .search-area .found {
+        grid-column: 1/ span 2;
+    }
+    .inner-page .search-area .filter{
+        display: none;
+    }
+    .inner-page .search-area article{
+        flex-basis: calc(50% - 20px);
+    }
+}
+
+/* VIDEOS PAGE */
+/* ------------------------------------------------------------------------- */
+
+.inner-page .videos-area{
+    display: flex;
+    flex-wrap:wrap;
+    gap: 20px;
+}
+
+.inner-page .videos-area article div iframe{
+    border: 0;
+    width: 100%; /* default 560x315 px */
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.inner-page .videos-area article div{
+    /* https://faq.dailymotion.com/hc/en-us/articles/360022841393-How-to-preserve-the-player-aspect-ratio-on-a-responsive-page */
+    position: relative;
+    padding-bottom: 56.25%;
+}
+
+.inner-page .videos-area article{
+    flex-basis: calc(50% - 20px);
+    content: "";
+    clear: both;
+    display: table;
+    background-color: var(--article-bg);
+    overflow: hidden;
+}
+
+@media not screen, (max-width: 768px){
+    .inner-page .videos-area article{
+        flex-basis: 100%;
+    }
+}
+
+/* ========================================================================= */
+/* FOOTER */
+/* ========================================================================= */
+
+
+
+
+
+/* NEWSLETTER AREA */
+/* ------------------------------------------------------------------------- */
+
+footer .newsletter-wrapper{
+    background-color: var(--main-color);
+    height: 280px;
+    width: 100%;
+    position: relative;
+}
+
+/* https://coder-coder.com/background-image-opacity/ */
+footer .newsletter-wrapper::before {
+    content: "";
+    background-image: url("../img/doodle.png");
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.2;
+
+}
+
+footer .newsletter{
+    margin: 0 auto;
+    height: 280px;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+
+footer .newsletter h2{
+    text-transform: uppercase;
+}
+
+footer .newsletter p{
+    text-align: center;
+    margin: 20px 0 20px 0;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+
+footer .newsletter form{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+footer .newsletter  div:nth-of-type(1){
+    width: 100%;
+}
+footer .newsletter  div:nth-of-type(2){
+    margin-left: 8px;
+    width: 120px;
+    height: 100%;
+}
+footer .newsletter input{
+    width: 100%;
+    height: 100%;
+}
+
+footer .newsletter input[type=submit]{
+    background-color: var(--emphasis-color);
+    border: 0;
+    border-radius: 4px;
+    color: var(--text-over-dark-bg);
+}
+
+footer .newsletter input[type=submit]:hover {
+    background-color: var(--shopour-hoverlink-color);
+}
+
+footer .newsletter input[type=text]{
+    border: 0;
+}
+
+@media not screen, (max-width: 768px) {
+    footer .newsletter {
+        height: 52vw;
+    }
+    footer .newsletter form{
+        width: 350px;
+    }
+    footer .newsletter p{
+        font-size: 1.2rem;
+    }
+    footer .newsletter h2{
+        font-size: 2.2rem;
+    }
+}
+
+@media screen and (min-width: 769px){
+    footer .newsletter form{
+        width: 400px;
+    }
+    footer .newsletter p{
+        font-size: 1.8rem;
+    }
+    footer .newsletter h2{
+        font-size: 3rem;
+    }
+}
+
+
+
+/* ABOUT AREA */
+/* ------------------------------------------------------------------------- */
+
+footer .about{
+    padding-top: 2em;
+    height: 195px;
+    background-color: var(--text-and-dark-bg);
+    z-index: 1000;
+}
+
+footer .about p, footer .about nav{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+footer .about *{
+    color: var(--text-over-dark-bg);
+}
+
+footer .title, footer .social{
+    font-weight: 600;
+    margin-top: -0.2rem;
+}
+
+footer .social span{
+    vertical-align: middle;
+}
+
+footer .social span a:hover{
+    color: var(--footer-hoverlink-color);
+}
+
+footer .social span img{
+    margin: auto 4px;
+}
+
+footer .title, footer .copyright{
+    font-size: 1.4rem;
+    float: left;
+}
+
+footer hr{
+    border-top: 1px solid darkgrey;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+footer .social, footer .law{
+    float: right;
+}
+
+
+footer nav li{
+    display:inline;
+}
+
+footer nav li:not(footer nav li:first-of-type){
+    padding-left: 18px;
+}
+
+footer nav li a:hover{
+    color: var(--footer-hoverlink-color);
+}
+
+@media not screen, (max-width: 768px){
+    footer .about{
+        height: 60vw;
+    }
+
+    footer .title, footer .copyright, footer .social, footer .law{
+        float: none;
+    }
+    footer .title, footer .social{
+        font-size: 1.2rem;
+    }
+    footer .social, footer .law{
+        font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 769px){
+    footer .title, footer .social{
+        font-size: 1.4rem;
+    }
+    footer .social, footer .law{
+        font-size: 1.4rem;
+    }
+}
