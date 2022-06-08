@@ -53,18 +53,6 @@
     --main-font-family: 'Montserrat', sans-serif;
 }
 
-
-
-/*
-https://www.w3schools.com/howto/howto_css_responsive_text.asp
-http://www.javascriptkit.com/dhtmltutors/cssmediaqueries2.shtml#:~:text=Most%20mobile%20phones%20have%20a,a%20640%20x%20960%20resolution.
-https://developer.mozilla.org/es/docs/Web/CSS/Media_Queries/Using_media_queries
-https://www.w3schools.com/css/css_align.asp
-https://codepen.io/_martinCx/pen/LEoEJB
-https://stackoverflow.com/questions/17054158/css-100-height-with-header-and-footer
-
- */
-
 /* ========================================================================= */
 /* HTML, BODY, container... */
 /* ========================================================================= */
@@ -103,10 +91,6 @@ h1, h2, h3, h4, h5, h6, p, nav, ul, li{
 
 main a, footer a{
     text-decoration: none;
-}
-
-a:visited{
-    color: inherit;
 }
 
 input[type=text]{
@@ -322,6 +306,14 @@ header .menu{
     grid-gap: 20px;
 }
 
+.index-page h3 {
+    text-transform: uppercase;
+}
+
+.index-page article{
+    margin-bottom: 24px;
+}
+
 
 /* https://mycompleteweb.net/line-on-both-sides-heading-using-css-grid/ */
 .index-page h2:after,.index-page h2:before {
@@ -330,17 +322,13 @@ header .menu{
     border-bottom: 4px solid var(--text-and-dark-bg);
 }
 
-.index-page h3{
-    font-size: 1.5vw;
-}
-
-
 .index-page .shop{
     background-image: url("../img/shop-bg.jpg");
     background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
+    max-height: 500px;
 }
 
 .index-page .shop .message{
@@ -422,7 +410,6 @@ header .menu{
     }
 
     .index-page .shop{
-        margin-top: 50px;
         overflow: auto;
         padding: 40px 0 40px 0;
     }
@@ -437,9 +424,15 @@ header .menu{
         flex-basis: 90%;
         min-height: 280px;
     }
+
     .index-page h2{
         font-size: 2.2rem;
     }
+
+    .index-page h3{
+        font-size: 3vw;
+    }
+
 }
 
 @media screen and (min-width: 769px){
@@ -474,6 +467,11 @@ header .menu{
     .index-page h2{
         font-size: 3rem;
     }
+
+    .index-page h3{
+        font-size: 1.5rem;
+    }
+
 }
 
 /* INNER PAGES */
@@ -485,26 +483,45 @@ header .menu{
 .inner-page h1{
     text-transform: uppercase;
 
+    margin: 24px auto;
 }
 
 .inner-page h2{
     text-transform: uppercase;
-
 }
 
 .inner-page > p{
+    margin-bottom: 24px;
     font-size: 1.5rem;
 }
+
 
 @media not screen, (max-width: 768px) {
     .inner-page h1{
         font-size: 8vw;
+        text-align: center;
+    }
+    .index-page h3{
+        font-size: 3vw;
+    }
+    .inner-page > p{
+        margin-bottom: 24px;
+        font-size: 1.5rem;
+        font-weight: 600;
+        text-align: center;
+    }
+    .inner-page .result-page a{
+        font-size: 2rem;
     }
 }
 
 @media screen and (min-width: 769px){
     .inner-page h1{
         font-size: 3.5rem;
+    }
+
+    .index-page h3{
+        font-size: 1.5rem;
     }
 }
 
@@ -529,6 +546,7 @@ header .menu{
     grid-column: 1/2;
     grid-row: 1/2;
     background-color: var(--article-bg);
+    padding: 0 15px;
 }
 
 .inner-page .search-area img{
@@ -554,6 +572,42 @@ header .menu{
     display:inline;
     font-weight: 600;
 }
+
+.result-page{
+    margin: 30px 0;
+}
+
+.result-page li{
+    padding: 0 5px;
+    display: block;
+}
+
+.result-page li a{
+    font-size: 2rem;
+}
+
+.result-page a:not(.active){
+    color: var(--pag-link-color);
+}
+
+.result-page a.active{
+    color: black;
+}
+
+
+.inner-page .search-area h2{
+    margin: 5px 0;
+}
+.inner-page .search-area .filter h2:nth-of-type(2), .inner-page .search-area .filter h2:nth-of-type(2){
+    margin-top: 20px;
+}
+.inner-page .search-area li{
+    margin: 5px 0;
+    font-size: 1.5rem;
+}
+
+
+
 
 @media not screen, (max-width: 768px){
     .inner-page .search-area .found {
@@ -601,9 +655,32 @@ header .menu{
     overflow: hidden;
 }
 
+
+
+@media screen and (min-width: 769px){
+    .inner-page .videos-area h2{
+        padding: 10px 10px 5px 10px;
+        font-size: 1.5rem;
+    }
+
+     .inner-page .videos-area p{
+        padding: 5px 10px 10px 10px;
+         font-size: 1.4rem;
+    }
+}
+
 @media not screen, (max-width: 768px){
     .inner-page .videos-area article{
         flex-basis: 100%;
+    }
+    .inner-page .videos-area h2{
+        padding: 20px 20px 10px 20px;
+        font-size: 1.5rem;
+    }
+
+    .inner-page .videos-area p{
+        padding: 10px 5px 20px 20px;
+        font-size: 1.4rem;
     }
 }
 
@@ -709,7 +786,7 @@ footer .newsletter input[type=text]{
         font-size: 1.2rem;
     }
     footer .newsletter h2{
-        font-size: 2.2rem;
+        font-size: 3rem;
     }
 }
 
